@@ -4,7 +4,7 @@
 # Exit on fail
 set -e
 
-yarn
+yarn install --prefer-offline --no-progress
 
 if [ $# -eq 0 ]; then
 	exec /bin/bash
