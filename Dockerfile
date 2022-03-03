@@ -1,11 +1,17 @@
-FROM node:16.13-slim as node
+ARG _NODE_VERSION=16.14
+ARG _ANGULAR_CLI_VERSION=13.2.3
+
+FROM node:${_NODE_VERSION}  
 LABEL maintainer "Embras Labs <labs@embras.net>"
+
+ENV TZ=Etc/UTC
+ENV LANG C.UTF-8
 
 EXPOSE 4200
 WORKDIR /app
 
 # https://gist.github.com/LayZeeDK/c822cc812f75bb07b7c55d07ba2719b3
-RUN yarn global add @angular/cli@13.0.2
+RUN yarn global add @angular/cli@${_ANGULAR_CLI_VERSION}
 
 # Reference: https://github.com/jfroom/docker-compose-rails-selenium-example
 COPY ./docker-entrypoint.sh /
